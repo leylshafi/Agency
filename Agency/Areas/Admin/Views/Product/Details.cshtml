@@ -1,0 +1,23 @@
+﻿@model Product
+<div class="m-5">
+	<div class="container">
+		<h1>@Model.Name</h1>
+		<div class="d-flex">
+			<div class="mr-5">
+				<img width="200px" src="~/assets/img/@Model.ImageUrl">
+			</div>
+
+			<div>
+				<p>Name: @Model.Name</p>
+				<hr />
+				<h5>Category</h5>
+				<p>@Model.Category.Name</p>
+			</div>
+		</div>
+
+
+
+
+
+	</div>
+</div>
