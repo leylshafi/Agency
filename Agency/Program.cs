@@ -1,9 +1,7 @@
 using Agency.Data;
 using Agency.Models;
-using Agency.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,10 +24,8 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
     options.Lockout.MaxFailedAccessAttempts = 3;
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(3);
 
-    options.SignIn.RequireConfirmedEmail = true;
 }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
-builder.Services.AddScoped<IAuthService, AuthService>();  
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -40,6 +36,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseAuthentication();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
